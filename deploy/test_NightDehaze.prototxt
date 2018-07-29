@@ -1,0 +1,328 @@
+name: "HDP-Net"
+input: "data"
+input_dim: 1
+input_dim: 3
+input_dim: 128
+input_dim: 128
+
+# the network trained g model
+
+layer {
+    name: "g_conv_1_g"
+    type: "Convolution"
+    bottom: "data"
+    top: "g_conv_1_g"
+    convolution_param{
+        num_output: 8
+        pad: 1
+        stride: 1
+        kernel_size: 3
+    }
+}
+
+layer {
+    name: "g_relu_1_g"
+    type: "ReLU"
+    bottom: "g_conv_1_g"
+    top: "g_conv_1_g"
+
+}
+
+layer {
+    name: "g_conv_2_g"
+    type: "Convolution"
+    bottom: "g_conv_1_g"
+    top: "g_conv_2_g"
+    convolution_param{
+        num_output: 16
+        pad: 1
+        stride: 1
+        kernel_size: 3
+    }
+}
+
+layer {
+    name: "g_relu_2_g"
+    type: "ReLU"
+    bottom: "g_conv_2_g"
+    top: "g_conv_2_g"
+
+}
+
+layer {
+    name: "g_conv_pooling_1_g"
+    type: "Convolution"
+    bottom: "g_conv_2_g"
+    top: "g_pooling_1_g"
+    convolution_param{
+        num_output: 32
+        pad: 0
+        stride: 2
+        kernel_size: 1
+    }
+}
+
+layer {
+    name: "g_conv_3_g"
+    type: "Convolution"
+    bottom: "g_pooling_1_g"
+    top: "g_conv_3_g"
+    convolution_param{
+        num_output: 32
+        pad: 1
+        stride: 1
+        kernel_size: 3
+    }
+}
+
+layer {
+    name: "g_relu_3_g"
+    type: "ReLU"
+    bottom: "g_conv_3_g"
+    top: "g_conv_3_g"
+
+}
+
+layer {
+    name: "g_conv_pooling_2_g"
+    type: "Convolution"
+    bottom: "g_conv_3_g"
+    top: "g_pooling_2_g"
+    convolution_param{
+        num_output: 64
+        pad: 0
+        stride: 2
+        kernel_size: 1
+    }
+}
+
+
+layer {
+    name: "g_conv_4_g"
+    type: "Convolution"
+    bottom: "g_pooling_2_g"
+    top: "g_conv_4_g"
+    convolution_param{
+        num_output: 64
+        pad: 1
+        stride: 1
+        kernel_size: 3
+    }
+}
+
+layer {
+    name: "g_relu_4_g"
+    type: "ReLU"
+    bottom: "g_conv_4_g"
+    top: "g_conv_4_g"
+
+}
+
+
+layer {
+    name: "g_conv_5_g"
+    type: "Convolution"
+    bottom: "g_conv_4_g"
+    top: "g_conv_5_g"
+    convolution_param{
+        num_output: 64
+        pad: 1
+        stride: 1
+        kernel_size: 3
+    }
+}
+
+layer {
+    name: "g_relu_5_g"
+    type: "ReLU"
+    bottom: "g_conv_5_g"
+    top: "g_conv_5_g"
+
+}
+
+layer {
+  name: "g_deconv_1_g"
+  type: "Deconvolution"
+  bottom: "g_conv_5_g"
+  top: "g_conv_6_g"
+  convolution_param {
+    num_output: 32
+    bias_term: true
+    kernel_size: 2
+    stride: 2
+    pad: 0
+  }
+}
+
+layer {
+    name: "g_relu_6_g"
+    type: "ReLU"
+    bottom: "g_conv_6_g"
+    top: "g_conv_6_g"
+
+}
+
+layer {
+    name: "eltwise_1"
+    type: "Eltwise"
+    bottom: "g_conv_3_g"
+    bottom: "g_conv_6_g"
+    top: "eltwise_1"
+    eltwise_param {
+     operation: SUM
+     coeff: 1
+     coeff: -1
+    }
+}
+
+layer {
+    name: "concat_mid_1"
+    type: "Concat"
+    bottom: "g_conv_3_g"
+    bottom: "eltwise_1"
+    top: "g_conv_6_c_g"
+    concat_param {
+     axis: 1
+    }
+}
+
+layer {
+  name: "g_deconv_2_g"
+  type: "Deconvolution"
+  bottom: "g_conv_6_c_g"
+  top: "g_conv_7_g"
+  convolution_param {
+    num_output: 16
+    bias_term: true
+    kernel_size: 2
+    stride: 2
+    pad: 0
+  }
+}
+
+layer {
+    name: "g_relu_7_g"
+    type: "ReLU"
+    bottom: "g_conv_7_g"
+    top: "g_conv_7_g"
+}
+
+layer {
+    name: "eltwise_2"
+    type: "Eltwise"
+    bottom: "g_conv_2_g"
+    bottom: "g_conv_7_g"
+    top: "eltwise_2"
+    eltwise_param {
+     operation: SUM
+     coeff: 1
+     coeff: -1
+    }
+}
+
+layer {
+    name: "concat_mid_2"
+    type: "Concat"
+    bottom: "g_conv_2_g"
+    bottom: "eltwise_2"
+    top: "g_conv_7_c_g"
+    concat_param {
+     axis: 1
+    }
+}
+
+layer {
+    name: "g_conv_8_g"
+    type: "Convolution"
+    bottom: "g_conv_7_c_g"
+    top: "g_conv_8_g"
+    convolution_param{
+        num_output: 16
+        pad: 1
+        stride: 1
+        kernel_size: 3
+    }
+}
+
+layer {
+    name: "g_relu_8_g"
+    type: "ReLU"
+    bottom: "g_conv_8_g"
+    top: "g_conv_8_g"
+}
+
+layer {
+    name: "g_conv_9_g"
+    type: "Convolution"
+    bottom: "g_conv_8_g"
+    top: "g_conv_9_g"
+    convolution_param{
+        num_output: 16
+        pad: 0
+        stride: 1
+        kernel_size: 1
+    }
+}
+
+layer {
+    name: "g_relu_9_g"
+    type: "ReLU"
+    bottom: "g_conv_9_g"
+    top: "g_conv_9_g"
+}
+
+layer {
+    name: "g_conv_10_g"
+    type: "Convolution"
+    bottom: "g_conv_9_g"
+    top: "g_conv_10_g"
+    convolution_param{
+        num_output: 8
+        pad: 0
+        stride: 1
+        kernel_size: 1
+    }
+}
+
+layer {
+    name: "g_relu_10_g"
+    type: "ReLU"
+    bottom: "g_conv_10_g"
+    top: "g_conv_10_g"
+}
+
+layer {
+    name: "g_conv_11_g"
+    type: "Convolution"
+    bottom: "g_conv_10_g"
+    top: "g_conv_11_g"
+    convolution_param{
+        num_output: 3
+        pad: 0
+        stride: 1
+        kernel_size: 1
+    }
+}
+
+layer {
+    name: "g_tanh_11_g"
+    type: "TanH"
+    bottom: "g_conv_11_g"
+    top: "g_conv_11_g"
+}
+
+
+layer {
+    name: "eltwise_layer"
+    type: "Eltwise"
+    bottom: "data"
+    bottom: "g_conv_11_g"
+    top: "eltwise_g"
+    eltwise_param {
+     operation: SUM
+     coeff: 1
+     coeff: -1
+    }
+}
+
+
