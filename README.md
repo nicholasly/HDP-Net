@@ -15,7 +15,7 @@ This is a test implementation for paper: HDP-Net: Haze Density Prediction Networ
 Run the python file <code>HDP-Net_test.py</code> with the code like <code>python HDP-Net_test.py img/*.jpg</code> in command. 
 
 # Datasets
-We also provide the [datasets](https://pan.baidu.com/s/1cY8O5H8EYIwetPdb6xdupA) adopted in the work: Haze-Free, NightHaze-1, NightHaze-2, YellowHaze-1 and YellowHaze-2. Due to the limited capability of building datasets, these datasets are merely provided as reference. The initial size of images is not 128 x 128 but they are downsampled to smaller resolution before training. Dehazing effects may vary when a different dataset is trainedIf you have any question, please contact us and we are willing to answer.
+We also provide the [datasets](https://pan.baidu.com/s/1cY8O5H8EYIwetPdb6xdupA) adopted in the work: Haze-Free, NightHaze-1, NightHaze-2, YellowHaze-1 and YellowHaze-2. Due to the limited capability of building datasets, these datasets are merely provided as reference. The initial size of images is not 128 x 128 but they are downsampled to smaller resolution before training. Dehazing effects may vary when a different dataset is trained. If you have any question, please contact us and we are willing to answer.
 
 # Citation
         
