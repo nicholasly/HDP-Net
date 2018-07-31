@@ -3,6 +3,11 @@ Yinghong Liao, Zhuo Su, Xiangguo Liang, and Bin Qiu
 
 Released in 24/05/2018. The test codes are partly based on [DehazeNet](https://github.com/zlinker/DehazeNet).
 
+# Abstract
+Nighttime dehazing is a challenging ill-posed problem. Affected by unpredictable factors at night, daytime methods may be incompatible with night haze removal. In this paper, we propose an end-to-end learning-based solution to remove haze from night images. Different from the most-used atmospheric scattering model, we use a novel model to represent a night hazy image. We first present an estimator
+to predict the haze density in patches of the image. Based on this, a CNN, called Haze Density Prediction Network (HDP-Net), is adopted
+to obtain a haze density map so that it can be subtracted by the original hazy input to generate the desired haze-free output. The range of hue in night images may be altered by artificial light sources. To improve the dehazing capability in the certain range of hue, we devise four datasets under white light and yellow light conditions for network training. Finally, our method is compared with the state-of-the-art nighttime dehazing methods and demonstrated to have a superior performance.
+
 # Environment Requirement
 [Caffe](https://github.com/BVLC/caffe)
 
