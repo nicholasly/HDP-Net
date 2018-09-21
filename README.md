@@ -29,8 +29,8 @@ We also provide the [datasets](https://pan.baidu.com/s/1cY8O5H8EYIwetPdb6xdupA) 
 	  author={Liao, Yinghong and Su, Zhuo and Liang, Xiangguo and Qiu, Bin},
 	  booktitle={Advances in Multimedia Information Processing -- PCM 2018},
 	  year={2018},
-	  publisher="Springer International Publishing",
-	  pages="469--480",
+	  publisher={Springer International Publishing},
+	  pages={469--480}
 	} 
 
 # Examples
