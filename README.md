@@ -27,8 +27,10 @@ We also provide the [datasets](https://pan.baidu.com/s/1cY8O5H8EYIwetPdb6xdupA) 
 	@inproceedings{hdpnet_liao_2018,		
 	  title={HDP-Net: Haze Density Prediction Network for Nighttime Dehazing},
 	  author={Liao, Yinghong and Su, Zhuo and Liang, Xiangguo and Qiu, Bin},
-	  booktitle={The Pacific-Rim Conference on Multimedia (PCM)},
-	  year={2018}
+	  booktitle={Advances in Multimedia Information Processing -- PCM 2018},
+	  year={2018},
+	  publisher="Springer International Publishing",
+	  pages="469--480",
 	} 
 
 # Examples
