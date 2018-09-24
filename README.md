@@ -1,7 +1,9 @@
 # HDP-Net: Haze Density Prediction Network for Nighttime Dehazing
 Yinghong Liao, Zhuo Su, Xiangguo Liang, and Bin Qiu 
 
-Released in 24/05/2018. The test codes are partly based on [DehazeNet](https://github.com/zlinker/DehazeNet). [[pdf]](https://link.springer.com/chapter/10.1007%2F978-3-030-00776-8_43)
+Released in 24/05/2018. The test codes are partly based on [DehazeNet](https://github.com/zlinker/DehazeNet). 
+
+This paper is available in Springer Link now. [[pdf]](https://link.springer.com/chapter/10.1007%2F978-3-030-00776-8_43)
 
 # Abstract
 Nighttime dehazing is a challenging ill-posed problem. Affected by unpredictable factors at night, daytime methods may be incompatible with night haze removal. In this paper, we propose an end-to-end learning-based solution to remove haze from night images. Different from the most-used atmospheric scattering model, we use a novel model to represent a night hazy image. We first present an estimator
